@@ -52,7 +52,8 @@ function openingQuestion() {
     ]);
 
     then((answers) => {
-      const department = new Department(answers.departmentName);
+      const department = new Department
+      (answers.departmentName);
       teamArray.push(department);
       init();
     });
@@ -175,3 +176,4 @@ function openingQuestion() {
     });
   }
 }
+

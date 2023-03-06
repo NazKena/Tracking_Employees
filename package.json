@@ -12,14 +12,15 @@
   },
   "author": "",
   "license": "ISC",
-  "type":"commonjs",
+  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/NazKena/Tracking_Employees/issues"
   },
   "homepage": "https://github.com/NazKena/Tracking_Employees#readme",
   "dependencies": {
     "console.table": "^0.10.0",
-    "inquirer": "^9.1.4",
-    "mysql2": "^3.2.0"
+    "inquirer": "^8.2.5",
+    "mysql2": "^3.2.0",
+    "node-fetch": "^2.6.7"
   }
 }

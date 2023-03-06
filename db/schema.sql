@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS employee_db
+DROP DATABASE IF EXISTS employee_DB;
 CREATE DATABASE employee_DB;
 USE employee_DB;
 
@@ -25,9 +25,10 @@ CREATE TABLE employee (
     role_id INTEGER,
     manager_id INT,
     PRIMARY KEY (id),
-    FOREIGN KEY (role_id) REFERENCES role(id),
-    FOREIGN KEY (manager_id) REFERENCES employee(id) 
-    REFERENCES employee(id)
+    FOREIGN KEY (role_id) 
+    REFERENCES job_role(id),
+    FOREIGN KEY (manager_id) 
+    REFERENCES employee(id) 
     ON DELETE SET NULL
 );
 

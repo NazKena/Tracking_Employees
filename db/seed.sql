@@ -1,26 +1,29 @@
-INSERT INTO department (department_name)
+USE employee_DB
+
+INSERT INTO department (name)
 VALUES 
 ("Sales"),
 ("Legal"),
 ("Finance"),
-("Marketing"),
+("Marketing");
 
-INSERT INTO role (title, id, salary, department_id)
+INSERT INTO job_role (title, id, salary, department_id)
 VALUES
-("Customer Service Agent",3,40000,),
-("Finance Manager",4,80000),
-("Sales Representative",5,35000),
-("Accountant",6,65000),
-("Sales Manager",2,60000),
-("Lawyer",,4,50000),
+("Customer Service Agent",3,40000,3),
+("Finance Manager",1,80000,3),
+("Sales Representative",5,35000,4),
+("Accountant",6,65000,2),
+("Sales Manager",2,60000,1),
+("Lawyer",4,50000,3);
 
-INSERT INTO (first_name,last_name,,id,manager_id)
+
+INSERT INTO employee (first_name,last_name,manager_id)
 VALUES
-("Shallan", "Davar",1,2),
-("Adolin", "Kholin",2,2),
-("Julian", "Blackthorn",3,NULL),
-("Robb","Stark",3, NULL),
-("Jem","Carstairs",3,2),
-("Kaladin", "Stormblessed",4,2),
-("Petyr", "Baelish",2,NULL),
-("Nesta", "Archeron",6,3,);
+("Shallan", "Davar",null),
+("Adolin", "Kholin",1),
+("Julian", "Blackthorn",NULL),
+("Robb","Stark", 3),
+("Jem","Carstairs",3),
+("Kaladin", "Stormblessed",1),
+("Petyr", "Baelish",NULL),
+("Nesta", "Archeron",null);
