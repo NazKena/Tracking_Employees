@@ -1,0 +1,24 @@
+{
+  "name": "tracking_employees",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NazKena/Tracking_Employees.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NazKena/Tracking_Employees/issues"
+  },
+  "homepage": "https://github.com/NazKena/Tracking_Employees#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^9.1.4",
+    "mysql2": "^3.2.0"
+  }
+}
