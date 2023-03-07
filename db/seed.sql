@@ -1,4 +1,4 @@
-USE employee_DB
+ USE employee_DB; 
 
 INSERT INTO department (name)
 VALUES 
@@ -7,23 +7,25 @@ VALUES
 ("Finance"),
 ("Marketing");
 
-INSERT INTO job_role (title, id, salary, department_id)
+SELECT * FROM ROLE; 
+INSERT INTO role (title, id, salary)
 VALUES
-("Customer Service Agent",3,40000,3),
-("Finance Manager",1,80000,3),
-("Sales Representative",5,35000,4),
-("Accountant",6,65000,2),
-("Sales Manager",2,60000,1),
-("Lawyer",4,50000,3);
+("Customer Service Agent",1,40000),
+("Finance Manager",7,80000),
+("Sales Representative",2,35000),
+("Accountant",3,65000),
+("Sales Manager",4,60000),
 
+SELECT * FROM role;
 
-INSERT INTO employee (first_name,last_name,manager_id)
+INSERT INTO employee (first_name, last_name, id, manager_id)
 VALUES
-("Shallan", "Davar",null),
-("Adolin", "Kholin",1),
-("Julian", "Blackthorn",NULL),
-("Robb","Stark", 3),
-("Jem","Carstairs",3),
-("Kaladin", "Stormblessed",1),
-("Petyr", "Baelish",NULL),
-("Nesta", "Archeron",null);
+("Shallan", "Davar",1, 1),
+("Adolin", "Kholin",2,NULL),
+("Julian", "Blackthorn",4,NULL),
+("Robb","Stark",5,2),
+("Jem","Carstairs",3,3),
+("Kaladin", "Stormblessed",6,4),
+("Nesta", "Archeron",7,NULL);
+
+SELECT * FROM employee;

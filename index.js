@@ -37,10 +37,42 @@ function openingQuestion() {
           name: "Add An Employee",
           value: "addEmployee",
         },
-        { name: "Quit", value: "Quit" },
+        { name: "Finish", value: "Finish" },
       ],
     },
-  ]);
+
+  ]).then((res) => {
+    let choice = res.choice
+    switch (choice) {
+      case "viewAllDepartments":
+        viewAllDepartments();
+        break;
+      case "viewAllRoles":
+        viewAllRoles();
+        break;
+      case "viewAllEmployees":
+        viewAllEmployees();
+        break;
+      case "viewAllEmployees":
+        viewAllEmployees();
+        break;
+      case "addDepartment":
+        addDepartment();
+        break;
+      case "addRole":
+        addRole();
+        break;
+      case "addEmployee":
+        addEmployee();
+        break;
+      case "Finish":
+        addFinish();
+        break;
+    }
+  });
+}
+openingQuestion ();
+
 
   function addDepartment() {
     inquirer.prompt([
@@ -146,34 +178,9 @@ function openingQuestion() {
       },
     ]);
 
-    then((answer) => {
-      switch (answer.roles) {
-        case "viewAllDepartments":
-          viewAllDepartments();
-          break;
-        case "viewAllRoles":
-          viewAllRoles();
-          break;
-        case "viewAllEmployees":
-          viewAllEmployees();
-          break;
-        case "viewAllEmployees":
-          viewAllEmployees();
-          break;
-        case "addDepartment":
-          addDepartment();
-          break;
-        case "addRole":
-          addRole();
-          break;
-        case "addEmployee":
-          addEmployee();
-          break;
-        case "Finish":
-          addFinish();
-          break;
-      }
-    });
-  }
+    
+function Finish() {
+  console.log("Thank you for using Employee-Tracker!");
+  process.exit();
 }
-
+  }
