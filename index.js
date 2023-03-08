@@ -40,9 +40,8 @@ function openingQuestion() {
         { name: "Finish", value: "Finish" },
       ],
     },
-
   ]).then((res) => {
-    let choice = res.choice
+    let choice = res.choice;
     switch (choice) {
       case "viewAllDepartments":
         viewAllDepartments();
@@ -66,143 +65,149 @@ function openingQuestion() {
         addEmployee();
         break;
       case "Finish":
-        addFinish();
-        break;
+        Finish();
     }
   });
 }
-openingQuestion ();
-
-
+openingQuestion();
 
 function viewAllDepartments() {
-  db.query ( "SELECT * FROM department", (err, res) => {
-   if (err) throw err;
-   console.table(res);
- });
- openingQuestion
- ();
+  db.query("SELECT * FROM department", (err, res) => {
+    if (err) throw err;
+    console.table(res);
+  });
+  openingQuestion();
 }
-
-
 
 function viewAllRoles() {
-  db.query ( "SELECT * FROM roles", (err, res) => {
-   if (err) throw err;
-   console.table(res);
- });
- openingQuestion
- ();
+  db.query("SELECT * FROM role", (err, res) => {
+    if (err) throw err;
+    console.table(res);
+  });
+  openingQuestion();
 }
 
-  function addDepartment() {
-    inquirer.prompt([
+function viewAllEmployees() {
+  db.query("SELECT * FROM employee", (err, res) => {
+    if (err) throw err;
+    console.table(res);
+  });
+  openingQuestion();
+}
+
+function addDepartment() {
+  inquirer
+    .prompt([
       {
         type: "input",
-        name: "departmentName",
+        name: "choice",
         message: "Enter Department's name here",
       },
-
     ])
-    .then((answers) => {
-      const department = new Department
-      (answers.departmentName);
-      teamArray.push(department);
-      init();
-    }
-    )
-}
-  function addRole() {
-    inquirer.prompt([
-      {
-        type: "input",
-        name: "roleName",
-        message: "Enter the name of role here",
-      },
 
-      {
-        type: "input",
-        name: "salary",
-        message: "Enter salary for role here",
-      },
-
-      {
-        type: "input",
-        name: "department",
-        message: "Which department does the role belong top?",
-      },
-
-    ])
-    .then((answers) => {
-      const role = new Role(
-        answers.roleName,
-        answers.salary,
-        answers.department
+    .then((res) => {
+      let answer = res.choice;
+      db.query(
+        "INSERT INTO department (name) VALUES (?)",
+        [answer],
+        (err, res) => {
+          if (err) throw err;
+        }
       );
-      teamArray.push(role);
-      init();
-    }
-    )
+      openingQuestion();
+    });
 }
-  function addEmployee() {
-    inquirer.prompt([
-      {
-        type: "input",
-        name: "firstName",
-        message: "Enter the first name of employee here",
-      },
 
-      {
-        type: "input",
-        name: "lastName",
-        message: "Enter the last name of employee here",
-      },
 
-      {
-        type: "input",
-        name: "role",
-        message: "What is the employee's role?",
-      },
-      {
-        type: "input",
-        name: "manager",
-        message: "What is the employee's manager?",
-      },
+function addRole() {
+  let departmentID = [];
+  let departmentName = [];
+  db.query("SELECT * FROM department", (err, res) => {
+    if (err) throw err;
 
-    ])
-    .then((answers) => {
-      const employee = new Employee(
-        answers.firstName,
-        answers.lastName,
-        answers.role,
-        answers.manager
-      );
-      teamArray.push(employee);
-      init();
-    }
-    )
+    res.forEach(({ id }) => {
+      departmentID.push(id);
+    });
+
+    res.forEach(({ name }) => {
+      departmentName.push(name);
+    });
+    addRole(departmentID, departmentName);
+  });
 }
-  function init() {
-    inquirer.prompt([
-      {
-        type: "list",
-        name: "mainSelection",
-        message: "What would you like to do?",
-        choices: [
-          "View All Departments",
-          "View All Employees",
-          "View All Roles",
-          "Add A Department",
-          "Add A Role",
-          "Add An Employee",
-          "Quit",
-        ],
-      },
-    ]);
 
-    
-function Finish() {
-  console.log("Thank you for using Employee-Tracker!");
-  process.exit();
+
+
+function addRole() {
+  inquirer
+  .prompt([
+    {
+      type: "input",
+      name: "roleName",
+      message: "Enter the name of role here",
+    },
+
+    {
+      type: "input",
+      name: "salary",
+      message: "Enter salary for role here",
+    },
+
+    {
+      type: "input",
+      name: "department",
+      message: "Which department does the role belong top?",
+    },
+  ])
+
+function addEmployee() {
+  inquirer.prompt([
+    {
+      type: "input",
+      name: "firstName",
+      message: "Enter the first name of employee here",
+    },
+
+    {
+      type: "input",
+      name: "lastName",
+      message: "Enter the last name of employee here",
+    },
+
+    {
+      type: "input",
+      name: "role",
+      message: "What is the employee's role?",
+    },
+    {
+      type: "input",
+      name: "manager",
+      message: "What is the employee's manager?",
+    },
+  ]);
 }
+
+function init() {
+  inquirer.prompt([
+    {
+      type: "list",
+      name: "mainSelection",
+      message: "What would you like to do?",
+      choices: [
+        "View All Departments",
+        "View All Employees",
+        "View All Roles",
+        "Add A Department",
+        "Add A Role",
+        "Add An Employee",
+        "Quit",
+      ],
+    },
+  ]);
+
+  function Finish() {
+    console.log("Thank you for using Employee Tracker!");
+    process.exit();
   }
+}
+}
