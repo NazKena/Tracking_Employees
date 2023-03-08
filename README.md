@@ -28,7 +28,7 @@ To install this application, npm must be installed which is done by typing comma
 
 ## Video Link
 
-Here's the link for the video: ()
+Here's the link for the video: [Video](https://drive.google.com/file/d/1ozl8H5DqKQO0cIZxIIPT6tXVZ2Pg-ROF/view?usp=sharing)
 
 
 
