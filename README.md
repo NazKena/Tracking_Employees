@@ -6,6 +6,7 @@
 - [Technologies](#technologies)
 - [Installation and Usage](#installation-and-usage)
 - [Screenshot](#screenshot)
+- [Video Demonstration](#video-link)
 
 ## Description
 
@@ -26,7 +27,7 @@ To install this application, npm must be installed which is done by typing comma
 
 ![Image](./Images/Screenshot%202023-03-08%20at%2020.11.52.png)
 
-## Video Link
+## Video Demonstration
 
 Here's the link for the video: [Video](https://drive.google.com/file/d/1ozl8H5DqKQO0cIZxIIPT6tXVZ2Pg-ROF/view?usp=sharing)
 
