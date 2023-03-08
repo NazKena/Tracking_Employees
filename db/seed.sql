@@ -19,7 +19,7 @@ VALUES
 
 SELECT * FROM role;
 
-INSERT INTO employee (first_name, last_name,role_id, manager_id)
+INSERT INTO employee (first_name,last_name,role_id, manager_id)
 VALUES
 ("Shallan", "Davar",1, 1),
 ("Adolin", "Kholin",2,NULL),

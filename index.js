@@ -213,7 +213,7 @@ function addNewEmployee(departmentlist) {
 
     .then(({ firstName, lastName, role, manager }) => {
       db.query(
-        `INSERT INTO role (first_name, last_name,role_id, manager_id) VALUES ("${firstName}",${lastName},${role},${manager});`,
+        `INSERT INTO role (first_name,last_name,role_id, manager_id) VALUES (${firstName},${lastName},${role},${manager});`,
         function (err, data) {
           if (err) throw err;
           console.table(data);
