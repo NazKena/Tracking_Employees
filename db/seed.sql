@@ -1,4 +1,4 @@
- USE employee_DB; 
+USE employee_DB; 
 
 INSERT INTO department (name)
 VALUES 
@@ -7,14 +7,15 @@ VALUES
 ("Finance"),
 ("Marketing");
 
-SELECT * FROM ROLE; 
-INSERT INTO role (title, id, salary)
+SELECT * FROM department; 
+
+INSERT INTO role (title,id,salary)
 VALUES
 ("Customer Service Agent",1,40000),
 ("Finance Manager",7,80000),
 ("Sales Representative",2,35000),
 ("Accountant",3,65000),
-("Sales Manager",4,60000),
+("Sales Manager",4,60000);
 
 SELECT * FROM role;
 

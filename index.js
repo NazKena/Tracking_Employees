@@ -84,6 +84,17 @@ function viewAllDepartments() {
  ();
 }
 
+
+
+function viewAllRoles() {
+  db.query ( "SELECT * FROM roles", (err, res) => {
+   if (err) throw err;
+   console.table(res);
+ });
+ openingQuestion
+ ();
+}
+
   function addDepartment() {
     inquirer.prompt([
       {
