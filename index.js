@@ -74,6 +74,16 @@ function openingQuestion() {
 openingQuestion ();
 
 
+
+function viewAllDepartments() {
+  db.query ( "SELECT * FROM department", (err, res) => {
+   if (err) throw err;
+   console.table(res);
+ });
+ openingQuestion
+ ();
+}
+
   function addDepartment() {
     inquirer.prompt([
       {
@@ -81,16 +91,16 @@ openingQuestion ();
         name: "departmentName",
         message: "Enter Department's name here",
       },
-    ]);
 
-    then((answers) => {
+    ])
+    .then((answers) => {
       const department = new Department
       (answers.departmentName);
       teamArray.push(department);
       init();
-    });
-  }
-
+    }
+    )
+}
   function addRole() {
     inquirer.prompt([
       {
@@ -110,9 +120,9 @@ openingQuestion ();
         name: "department",
         message: "Which department does the role belong top?",
       },
-    ]);
 
-    then((answers) => {
+    ])
+    .then((answers) => {
       const role = new Role(
         answers.roleName,
         answers.salary,
@@ -120,9 +130,9 @@ openingQuestion ();
       );
       teamArray.push(role);
       init();
-    });
-  }
-
+    }
+    )
+}
   function addEmployee() {
     inquirer.prompt([
       {
@@ -147,9 +157,9 @@ openingQuestion ();
         name: "manager",
         message: "What is the employee's manager?",
       },
-    ]);
 
-    then((answers) => {
+    ])
+    .then((answers) => {
       const employee = new Employee(
         answers.firstName,
         answers.lastName,
@@ -158,8 +168,9 @@ openingQuestion ();
       );
       teamArray.push(employee);
       init();
-    });
-  }
+    }
+    )
+}
   function init() {
     inquirer.prompt([
       {
