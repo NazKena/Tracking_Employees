@@ -24,6 +24,8 @@ To install this application, npm must be installed which is done by typing comma
 
 ## Screenshot
 
+![Image](./Images/Screenshot%202023-03-08%20at%2020.11.52.png)
+
 ## Video Link
 
 Here's the link for the video: ()
