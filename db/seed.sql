@@ -12,7 +12,7 @@ SELECT * FROM department;
 INSERT INTO role (title,id,salary)
 VALUES
 ("Customer Service Agent",1,40000),
-("Finance Manager",7,80000),
+("Finance Manager",5,80000),
 ("Sales Representative",2,35000),
 ("Accountant",3,65000),
 ("Sales Manager",4,60000);
