@@ -158,7 +158,7 @@ function addNewRole(departmentlist) {
     ])
     .then(({ roleName, salary, department }) => {
       db.query(
-        `INSERT INTO role (title,department_id,salary) VALUES ("${roleName}",${department},${salary});`,
+        `INSERT INTO department (title,department_id,salary) VALUES ("${roleName}",${department},${salary});`,
         function (err, data) {
           if (err) throw err;
           console.table(data);
@@ -167,6 +167,7 @@ function addNewRole(departmentlist) {
       );
     });
 }
+
 
 
 function addEmployee() {
@@ -213,7 +214,7 @@ function addNewEmployee(departmentlist) {
 
     .then(({ firstName, lastName, role, manager }) => {
       db.query(
-        `INSERT INTO role (first_name,last_name,role_id, manager_id) VALUES (${firstName},${lastName},${role},${manager});`,
+        `INSERT INTO employee (first_name,last_name,role_id, manager_id) VALUES ("${firstName}","${lastName}",${role},${manager});`,
         function (err, data) {
           if (err) throw err;
           console.table(data);
