@@ -64,7 +64,7 @@ function openingQuestion() {
       case "addEmployee":
         addEmployee();
         break;
-      case "Finish":
+      default:
         Finish();
     }
   });
@@ -75,24 +75,24 @@ function viewAllDepartments() {
   db.query("SELECT * FROM department", (err, res) => {
     if (err) throw err;
     console.table(res);
+    openingQuestion();
   });
-  openingQuestion();
 }
 
 function viewAllRoles() {
   db.query("SELECT * FROM role", (err, res) => {
     if (err) throw err;
     console.table(res);
+    openingQuestion();
   });
-  openingQuestion();
 }
 
 function viewAllEmployees() {
   db.query("SELECT * FROM employee", (err, res) => {
     if (err) throw err;
     console.table(res);
+    openingQuestion();
   });
-  openingQuestion();
 }
 
 function addDepartment() {
@@ -118,49 +118,74 @@ function addDepartment() {
     });
 }
 
-
 function addRole() {
   let departmentID = [];
   let departmentName = [];
   db.query("SELECT * FROM department", (err, res) => {
     if (err) throw err;
-
-    res.forEach(({ id }) => {
-      departmentID.push(id);
+    let departmentlist = [];
+    res.forEach((dept) => {
+      departmentlist.push({
+        name: dept.name,
+        value: dept.id,
+      });
     });
-
-    res.forEach(({ name }) => {
-      departmentName.push(name);
-    });
-    addRole(departmentID, departmentName);
+    addNewRole(departmentlist);
   });
 }
 
-
-
-function addRole() {
+function addNewRole(departmentlist) {
   inquirer
-  .prompt([
-    {
-      type: "input",
-      name: "roleName",
-      message: "Enter the name of role here",
-    },
+    .prompt([
+      {
+        type: "input",
+        name: "roleName",
+        message: "Enter the name of role here",
+      },
 
-    {
-      type: "input",
-      name: "salary",
-      message: "Enter salary for role here",
-    },
+      {
+        type: "input",
+        name: "salary",
+        message: "Enter salary for role here",
+      },
 
-    {
-      type: "input",
-      name: "department",
-      message: "Which department does the role belong top?",
-    },
-  ])
+      {
+        type: "list",
+        name: "department",
+        message: "Which department does the role belong top?",
+        choices: departmentlist,
+      },
+    ])
+    .then(({ roleName, salary, department }) => {
+      db.query(
+        `INSERT INTO role (title,department_id,salary) VALUES ("${roleName}",${department},${salary});`,
+        function (err, data) {
+          if (err) throw err;
+          console.table(data);
+          openingQuestion();
+        }
+      );
+    });
+}
+
 
 function addEmployee() {
+  let departmentID = [];
+  let departmentName = [];
+  db.query("SELECT * FROM department", (err, res) => {
+    if (err) throw err;
+    let departmentlist = [];
+    res.forEach((dept) => {
+      departmentlist.push({
+        name: dept.name,
+        value: dept.id,
+      });
+    });
+    addNewEmployee(departmentlist);
+  });
+}
+
+function addNewEmployee(departmentlist) {
   inquirer.prompt([
     {
       type: "input",
@@ -184,7 +209,18 @@ function addEmployee() {
       name: "manager",
       message: "What is the employee's manager?",
     },
-  ]);
+  ])
+
+    .then(({ firstName, lastName, role, manager }) => {
+      db.query(
+        `INSERT INTO role (first_name, last_name,role_id, manager_id) VALUES ("${firstName}",${lastName},${role},${manager});`,
+        function (err, data) {
+          if (err) throw err;
+          console.table(data);
+          openingQuestion();
+        }
+      );
+    });
 }
 
 function init() {
@@ -204,10 +240,10 @@ function init() {
       ],
     },
   ]);
-
-  function Finish() {
-    console.log("Thank you for using Employee Tracker!");
-    process.exit();
-  }
 }
+
+function Finish() {
+  console.log("Thank you for using Employee Tracker!");
+  db.end();
+  process.exit(0);
 }
