@@ -133,42 +133,38 @@ function addRole() {
     addNewRole(departmentlist);
   });
 }
-
 function addNewRole(departmentlist) {
   inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "roleName",
-        message: "Enter the name of role here",
-      },
+  .prompt([
+    {
+      type: "input",
+      name: "roleName",
+      message: "Enter the name of role here",
+    },
+    {
+      type: "input",
+      name: "salary",
+      message: "Enter salary for role here",
+    },
 
-      {
-        type: "input",
-        name: "salary",
-        message: "Enter salary for role here",
-      },
-
-      {
-        type: "list",
-        name: "department",
-        message: "Which department does the role belong top?",
-        choices: departmentlist,
-      },
-    ])
-    .then(({ roleName, salary, department }) => {
-      db.query(
-        `INSERT INTO department (title,department_id,salary) VALUES ("${roleName}",${department},${salary});`,
-        function (err, data) {
-          if (err) throw err;
-          console.table(data);
-          openingQuestion();
-        }
-      );
-    });
+    {
+      type: "list",
+      name: "department",
+      message: "Which department does the role belong top?",
+      choices: departmentlist,
+    },
+  ])
+  .then(({ roleName, salary, department }) => {
+    db.query(
+      `INSERT INTO role (title,department_id,salary) VALUES ("${roleName}",${department},${salary});`,
+      function (err, data) {
+        if (err) throw err;
+        console.table(data);
+        openingQuestion();
+      }
+    );
+  });
 }
-
-
 
 function addEmployee() {
   let departmentID = [];
